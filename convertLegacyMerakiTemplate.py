@@ -40,7 +40,7 @@
 # python convertLegacyMerakiTemplate.py
 #
 # Author: Craig Wickham
-# Date: Feb 27, 2025
+# Date: Mar 17, 2025
 
 
 import meraki
@@ -57,6 +57,8 @@ dashboard = meraki.DashboardAPI(API_KEY, output_log=False, print_console=False)
 print(f"Gathering networks tagged with '{TAG_FILTER}' that don't already include product type: cellularGateway and not a single product network\n")
 
 # Get all networks in the organization
+# Meraki by default has a perPage of 1000. If you want to run the script against more then 1000 networks you can use the below perPage=5000
+# networks = dashboard.organizations.getOrganizationNetworks(ORG_ID, perPage=5000)
 networks = dashboard.organizations.getOrganizationNetworks(ORG_ID)
 
 # Filter networks based on TAG_FILTER, exclude those with "cellularGateway", and ignore networks with only one product type
